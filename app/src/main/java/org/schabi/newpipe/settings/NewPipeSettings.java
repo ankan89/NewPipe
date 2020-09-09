@@ -48,6 +48,8 @@ public final class NewPipeSettings {
 
         getVideoDownloadFolder(context);
         getAudioDownloadFolder(context);
+
+        SettingMigrations.initMigrations(context);
     }
 
     private static void getVideoDownloadFolder(final Context context) {
