@@ -211,8 +211,6 @@ public class RouterActivity extends AppCompatActivity {
                     showDialog(choices);
                     break;
             }
-        } else if (selectedChoiceKey.equals(showInfoKey)) {
-            handleChoice(showInfoKey);
         } else if (selectedChoiceKey.equals(downloadKey)) {
             handleChoice(downloadKey);
         } else {
@@ -268,6 +266,7 @@ public class RouterActivity extends AppCompatActivity {
 
             handleChoice(choice.key);
 
+            // open future streams always like this one, because "always" button was used by user
             if (which == DialogInterface.BUTTON_POSITIVE) {
                 preferences.edit()
                         .putString(getString(R.string.preferred_open_action_key), choice.key)
@@ -366,10 +365,6 @@ public class RouterActivity extends AppCompatActivity {
                 getString(R.string.use_external_video_player_key), false);
         final boolean isExtAudioEnabled = preferences.getBoolean(
                 getString(R.string.use_external_audio_player_key), false);
-
-        returnList.add(new AdapterChoiceItem(getString(R.string.show_info_key),
-                getString(R.string.show_info),
-                resolveResourceIdFromAttr(context, R.attr.ic_info_outline)));
 
         if (capabilities.contains(VIDEO) && !(isExtVideoEnabled && linkType != LinkType.STREAM)) {
             returnList.add(new AdapterChoiceItem(getString(R.string.video_player_key),
